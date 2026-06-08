@@ -14,6 +14,8 @@ env/
 model.onnx
 *.onnx
 
+report
+
 # BC uint8 memmap cache + training artifacts
 bc_cache/
 runs/
