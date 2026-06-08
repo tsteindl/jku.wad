@@ -2,14 +2,26 @@ __pycache__
 _vizdoom
 .vscode
 _vizdoom.ini
+.claude
+
+bc_data_collection/
 
 # Python virtual environments
 .venv/
 venv/
 env/
 
-
-# BC data creation
-bc_data_collection/
-
 model.onnx
+*.onnx
+
+# BC uint8 memmap cache + training artifacts
+bc_cache/
+runs/
+checkpoints/
+*.pt
+
+# scratch dev files
+_dev_*.py
+_build_*.py
+# exported submissions
+models/

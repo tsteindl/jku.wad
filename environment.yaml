@@ -5,8 +5,9 @@ channels:
   - defaults
 dependencies:
   - python=3.12
-  - pytorch
-  - torchvision
+  # NOTE: torch/torchvision are installed via pip below (cu128 build) so this env
+  # reproduces GPU support on Blackwell (RTX 5080, sm_120). The conda `pytorch`
+  # package resolves to a CPU-only build, which is why GPU was unavailable before.
   - numpy
   - matplotlib
   - jupyter
@@ -29,9 +30,16 @@ dependencies:
   - jpeg
   - pip
   - pip:
+    # cu128 wheels for Blackwell (RTX 5080); pulled from the PyTorch index.
+    - --extra-index-url https://download.pytorch.org/whl/cu128
+    - torch==2.7.1+cu128
+    - torchvision==0.22.1+cu128
     - vizdoom
     - farama-notifications
-    - gymnasium
+    # gymnasium pinned to <1.3 for stable-baselines3 2.8 compatibility.
+    - gymnasium==1.2.3
+    - stable-baselines3==2.8.0
+    - tensorboard==2.20.0
     - onnx
     - onnx2pytorch
     - pygame
